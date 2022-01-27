@@ -16,3 +16,7 @@
 2022/01/27 20:47:20 /Users/taiki.nd/go/src/go-trading/bitflyer/bitflyer.go:54: action=doRequest endpoint=https://api.bitflyer.com/v1/Ticker
 2022/01/27 20:47:21 /Users/taiki.nd/go/src/go-trading/bitflyer/bitflyer.go:128: action=DateTime, err=parsing time "2022-01-27T11:47:20.947" as "2006-01-02T15:04:05Z07:00": cannot parse "" as "Z07:00"
 2022/01/27 20:47:21 /Users/taiki.nd/go/src/go-trading/bitflyer/bitflyer.go:128: action=DateTime, err=parsing time "2022-01-27T11:47:20.947" as "2006-01-02T15:04:05Z07:00": cannot parse "" as "Z07:00"
+2022/01/27 20:57:18 /Users/taiki.nd/go/src/go-trading/bitflyer/bitflyer.go:57: action=doRequest endpoint=https://api.bitflyer.com/v1/Ticker
+2022/01/27 20:57:18 /Users/taiki.nd/go/src/go-trading/bitflyer/bitflyer.go:131: action=DateTime, err=parsing time "2022-01-27T11:57:14.613" as "2006-01-02T15:04:05Z07:00": cannot parse "" as "Z07:00"
+2022/01/27 20:57:18 /Users/taiki.nd/go/src/go-trading/bitflyer/bitflyer.go:131: action=DateTime, err=parsing time "2022-01-27T11:57:14.613" as "2006-01-02T15:04:05Z07:00": cannot parse "" as "Z07:00"
+2022/01/27 21:00:23 /Users/taiki.nd/go/src/go-trading/bitflyer/bitflyer.go:169: connecting to wss://ws.lightstream.bitflyer.com/json-rpc
