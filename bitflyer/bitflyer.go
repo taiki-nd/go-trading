@@ -5,6 +5,7 @@ import (
 	"crypto/hmac"
 	"crypto/sha256"
 	"encoding/hex"
+	"encoding/json"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -119,4 +120,44 @@ func (api *APIClient) doRequest(method, urlPath string, query map[string]string,
 		return nil, err
 	}
 	return body, nil
+}
+
+//apiで資産状況にアクセス
+
+type Balance struct {
+	/*json形式で以下のように返ってくる
+		[
+	  {
+	    "currency_code": "JPY",
+	    "amount": 1024078,
+	    "available": 508000
+	  },
+	  {
+	    "currency_code": "BTC",
+	    "amount": 10.24,
+	    "available": 4.12
+	  },
+	  {
+	    "currency_code": "ETH",
+	    "amount": 20.48,
+	    "available": 16.38
+	  }
+	]
+	*/
+	CurrentCode string  `JSON:"currency_code"`
+	Amount      float64 `JSON:"amount"`
+	Available   float64 `JSON:"vailable"`
+}
+
+func (api *APIClient) GetBalance() ([]Balance, error) {
+	url := "me/getbalance"
+	resp, err := api.doRequest("GET", url, map[string]string{}, nil)
+	log.Printf("url=%s resp=%s", url, string(resp))
+	if err != nil {
+		log.Printf("action=GetBalance err=%s", err.Error())
+		return nil, err
+	}
+	var balance []Balance
+	err = json.Unmarshal(resp, &balance)
+	return balance, nil
 }
