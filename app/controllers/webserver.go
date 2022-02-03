@@ -72,7 +72,7 @@ func apiCandleHAndler(w http.ResponseWriter, r *http.Request) {
 	df, _ := models.GetAllCandle(productCode, durationTime, limit)
 
 	sma := r.URL.Query().Get("sma")
-	if sma == "" {
+	if sma != "" {
 		strSmaPeriod1 := r.URL.Query().Get("sma.Period1")
 		strSmaPeriod2 := r.URL.Query().Get("sma.Period2")
 		strSmaPeriod3 := r.URL.Query().Get("sma.Period3")
