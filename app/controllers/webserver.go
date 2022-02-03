@@ -1,9 +1,11 @@
 package controllers
 
 import (
+	"encoding/json"
 	"fmt"
 	"go-trading/app/models"
 	"go-trading/config"
+	"log"
 	"net/http"
 	"text/template"
 )
@@ -20,6 +22,22 @@ func viewChartHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
+}
+
+//jsonでエラーがあった時にjson形式で返す
+type JSONerror struct {
+	Error string `json:"error"`
+	Code  int    `json:"code"`
+}
+
+func APIerror(w http.ResponseWriter, errMessage string, code int) {
+	w.Header().Set("content-Type", "application/json")
+	w.WriteHeader(code)
+	jsonError, err := json.Marshal(JSONerror{Error: errMessage, Code: code})
+	if err != nil {
+		log.Fatal(err)
+	}
+	w.Write(jsonError)
 }
 
 func StartWebServer() error {
